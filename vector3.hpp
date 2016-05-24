@@ -1,5 +1,5 @@
-#ifndef Vector3_hpp
-#define Vector3_hpp
+#ifndef VECTOR3_HPP
+#define VECTOR3_HPP
 
 #include <iostream>
 #include <cmath>
@@ -30,7 +30,7 @@ public:
     ~Vector3() {};
 
     // The copy assignment operator.
-    Vector3 operator=(const Vector3 v)
+    Vector3& operator=(const Vector3 v)
     {
         if (this != &v)
         {
@@ -38,15 +38,6 @@ public:
             y_ = v.y_;
             z_ = v.z_;
         }
-        return *this;
-    };
-
-    // The move assignment operator.
-    Vector3 operator=(Vector3& v)
-    {
-        x_ = v.x_;
-        y_ = v.y_;
-        z_ = v.y_;
         return *this;
     };
 
@@ -63,16 +54,20 @@ public:
     Vector3 operator-() { return Vector3(-x_, -y_, -z_); };
 
 	// Get the squared norm (i.e., squared length) of the vector.
-    float sqrNorm() const
+    float squared_length() const
 	{
 		return ((x_ * x_) + (y_ * y_) + (z_ * z_));
 	};
 
     // Get the norm (i.e., length) of the vector.
-    float norm() const
+    float length() const
     {
-        return std::sqrt(sqrNorm());
+        return std::sqrt(squared_length());
     };
+
+    static Vector3 xNormal() { return Vector3(1, 0, 0); };
+    static Vector3 yNormal() { return Vector3(0, 1, 0); };
+    static Vector3 zNormal() { return Vector3(0, 0, 1); };
 
 private:
     float x_;
@@ -97,6 +92,7 @@ void operator/=(Vector3& v, const Vector3& w);
 
 float dotProduct(const Vector3& v, const Vector3& w);
 Vector3 crossProduct(const Vector3& v, const Vector3& w);
+Vector3 normalize(const Vector3& v);
 
 std::istream& operator>>(std::istream& inStream, Vector3& v);
 std::ostream& operator<<(std::ostream& outStream, const Vector3& v);
