@@ -1,4 +1,4 @@
-#include "Vector3.hpp"
+#include "vector3.hpp"
 
 bool operator==(const Vector3& v, const Vector3& w)
 {
@@ -66,9 +66,14 @@ float dotProduct(const Vector3& v, const Vector3& w)
 Vector3 crossProduct(const Vector3& v, const Vector3& w)
 {
     float x = ((v.y() * w.z()) - (v.z() * w.y()));
-    float y = ((v.z() * w.x()) - (v.x() * w.z()));
+    float y = (-(v.x() * w.z() - v.z() * w.x()));
     float z = ((v.x() * w.y()) - (v.y() * w.x()));
     return Vector3(x, y, z);
+}
+
+Vector3 normalize(const Vector3& v)
+{
+    return v / v.length();
 }
 
 std::istream& operator>>(std::istream& inStream, Vector3& v)

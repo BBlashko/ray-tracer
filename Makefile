@@ -1,36 +1,37 @@
 #Author: Brett A. Blashko
 #ID: V00759982
-#Created: 05/18/2016
-#Modified: 05/18/2016
+#Created: 05/16/2016
+#Modified: 05/23/2016
 
-PROGS = rayTracer
-OBJS = RGB.o Image.o Vector3.o rayTracer.o Sphere.o Ray.o
+PROGS = main
+OBJS = main.o image.o vector3.o sphere.o plane.o color.o
 CXX = g++
 CXXFLAGS = -g -O
 CXXWARNS = -Wall -Werror
 
-all: rayTracer
+all: main
 
-RGB.o : RGB.cpp
+main.o : main.cpp
 	$(CXX) $(CXXFLAGS) $(CXXWARNS) -c $^
 
-Image.o : Image.cpp
+image.o : image.cpp
 	$(CXX) $(CXXFLAGS) $(CXXWARNS) -c $^
 
-Vector3.o : Vector3.cpp
+vector3.o : vector3.cpp
 	$(CXX) $(CXXFLAGS) $(CXXWARNS) -c $^
 
-Sphere.o : Sphere.cpp
+sphere.o : sphere.cpp
 	$(CXX) $(CXXFLAGS) $(CXXWARNS) -c $^
 
-rayTracer.o : rayTracer.cpp
+plane.o : plane.cpp
 	$(CXX) $(CXXFLAGS) $(CXXWARNS) -c $^
 
-Ray.o : Ray.cpp
+color.o : color.cpp
 	$(CXX) $(CXXFLAGS) $(CXXWARNS) -c $^
 
-rayTracer : $(OBJS)
+main : $(OBJS)
 	$(CXX) $(CXXFLAGS) $(CXXWARNS) -o $@ $?
+	rm -f $(OBJS)
 
 clean:
-	rm -f $(OBJS) $(PROGS)
+	rm -f $(OBJS) $(PROGS) *.bmp
