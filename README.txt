@@ -1,8 +1,3 @@
-CSC 305 - Assignment #1 - Ray Tracer
-
-Author: Brett A. Blashko
-ID: V00759982
-
 Environment:
     - Built and tested on linux
     - gcc (GCC) 6.1.1
